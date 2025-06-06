@@ -1,0 +1,865 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--  Prevent admin panel being crawled by search engines -->
+    <meta name="robots" content="none, noarchive">
+
+    <title>Site administration | scopik admin</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome-free/css/all.min.css">
+
+    <!-- Bootstrap and adminLTE -->
+    <link rel="stylesheet" href="/static/vendor/adminlte/css/adminlte.min.css" id="adminlte-css">
+
+    <!-- Bootswatch theme -->
+    
+
+    
+
+    <!-- Custom fixes for django -->
+    <link rel="stylesheet" href="/static/jazzmin/css/main.css">
+
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom_admin.css">
+    
+
+    <!-- favicons -->
+    <link rel="shortcut icon" href="/static/vendor/adminlte/img/AdminLTELogo.png" type="image/png">
+    <link rel="icon" href="/static/vendor/adminlte/img/AdminLTELogo.png" sizes="32x32" type="image/png">
+
+    
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+
+     
+     
+</head>
+<body class="hold-transition sidebar-mini   dashboard accent-primary theme-default " data-admin-utc-offset="0">
+
+<div class="wrapper">
+
+    
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" id="jazzy-navbar">
+            <ul class="navbar-nav">
+
+                
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                
+
+                
+                
+                    <li class="nav-item d-none d-sm-inline-block">
+                        
+                            <a href="/" class="nav-link" >Home</a>
+                        
+                    </li>
+                
+                    <li class="nav-item d-none d-sm-inline-block">
+                        
+                            <a href="/admin/auth/user/" class="nav-link" >Users</a>
+                        
+                    </li>
+                
+            </ul>
+
+            
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                
+
+                
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn" data-toggle="dropdown" href="#" title="admin">
+                        <i class="far fa-user" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left" id="jazzy-usermenu">
+                        <span class="dropdown-header">Account</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="/admin/password_change/" class="dropdown-item">
+                            <i class="fas fa-key mr-2"></i> Change password
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <form id="logout-form" method="post" action="/admin/logout/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="wGkOiwGwUBCHRzrFu1EgwKakZ4MW66ufOLl3Q8GfxhrRl1YAZ5yAIxo7UsjF12pZ">
+                            <button type="submit" class="dropdown-item"><i class="fas fa-users mr-2"></i> Log out</button>
+                        </form>
+                        
+                        
+                        <div class="dropdown-divider"></div>
+                        
+                            <a href="/admin/auth/user/1/change/" class="dropdown-item dropdown-footer">See Profile</a>
+                        
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        
+        
+            
+
+            <aside class="main-sidebar elevation-4 sidebar-dark-primary" id="jazzy-sidebar">
+                <a href="/admin/" class="brand-link " id="jazzy-logo">
+                    <img src="/static/vendor/adminlte/img/AdminLTELogo.png" alt="scopik admin Logo" class="img-circle brand-image elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">SCOPIK</span>
+                </a>
+
+                <div class="sidebar">
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            
+                                <i class="fas fa-inverse user-profile fa-user-circle"></i>
+                            
+                        </div>
+                        <div class="info">
+                            
+                                <a href="/admin/auth/user/1/change/" class="d-block">admin</a>
+                            
+                        </div>
+                    </div>
+
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-collapsible="false">
+
+                            <li class="nav-item">
+                                <a href="/admin/" class="nav-link">
+                                    <i class="nav-icon fas fa-th-large"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+
+                            
+                                
+                                    <li class="nav-header">Api</li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/common_user/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>1. common user</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/university/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>2.University</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/certificate/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Certificates</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/chapter/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Chapters</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/college/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Colleges</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/course_category/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Course_categorys</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/course_video/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Course_videos</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/courseenrollement/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Courseenrollements</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/course/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Courses</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/quizresult/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Quiz results</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/quiz/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Quizs</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/student/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Students</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/superadmin/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Superadmins</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/api/teacher/" class="nav-link">
+                                                <i class="nav-icon fas fa-circle"></i> <p>Teachers</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                
+                                    <li class="nav-header">Authentication and Authorization</li>
+                                    
+                                        <li class="nav-item">
+                                            
+                                            <a href="/admin/auth/user/" class="nav-link">
+                                                <i class="nav-icon fas fa-user"></i> <p>Users</p>
+                                            </a>
+                                        
+                                        </li>
+                                    
+                                
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+        
+        
+    
+
+    <div class="content-wrapper" >
+        
+            
+            <div class="content border-bottom mb-2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
+                            <h1 class="h4 m-0 pr-3 mr-3 border-right"> Dashboard </h1>
+                            
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+        <li class="breadcrumb-item">Dashboard</li>
+    </ol>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="content">
+                <div class="container-fluid">
+                    <section id="content" class="content">
+                        
+                            
+                        
+                        <div class="row">
+                            
+    
+    
+        
+    
+
+    <div class="col-lg-9 col-12">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Api</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/common_user/">1. common user</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/common_user/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/common_user/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/university/">2.University</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/university/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/university/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/certificate/">Certificates</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/certificate/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/certificate/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/chapter/">Chapters</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/chapter/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/chapter/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/college/">Colleges</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/college/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/college/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/course_category/">Course_categorys</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/course_category/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/course_category/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/course_video/">Course_videos</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/course_video/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/course_video/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/courseenrollement/">Courseenrollements</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/courseenrollement/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/courseenrollement/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/course/">Courses</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/course/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/course/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/quizresult/">Quiz results</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/quizresult/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/quizresult/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/quiz/">Quizs</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/quiz/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/quiz/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/student/">Students</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/student/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/student/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/superadmin/">Superadmins</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/superadmin/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/superadmin/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/api/teacher/">Teachers</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/api/teacher/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/api/teacher/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    
+
+                
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">Authentication and Authorization</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/auth/user/">Users</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group float-right">
+                                                
+                                                    <a href="/admin/auth/user/add/" class="btn btn-xs btn-success addlink">Add</a>
+                                                
+                                                
+                                                    
+                                                        <a href="/admin/auth/user/" class="btn btn-xs btn-info changelink">Change</a>
+                                                    
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    
+
+                
+                </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-12">
+        <div id="content-related">
+            <div class="module" id="recent-actions-module">
+                <h4 class="mb-3">Recent actions</h4>
+                
+                
+                
+                    <div class="timeline">
+                        
+                            <div>
+                                
+                                    <i class="fas fa-edit bg-gray text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 3 hours, 9 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/courseenrollement/6/change/">Yeswanth M enrolled in web Technology status 100.00%</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                <ul style="list-style: none; padding: 0;">
+                                                    
+                                                    
+                                                        <li><strong>Changed</strong> Course.</li>
+                                                    
+                                                </ul>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div>
+                                
+                                    <i class="fas fa-edit bg-gray text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 3 hours, 11 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/course/5/change/">python</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                <ul style="list-style: none; padding: 0;">
+                                                    
+                                                    
+                                                        <li><strong>[]</strong></li>
+                                                    
+                                                </ul>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div>
+                                
+                                    <i class="fas fa-edit bg-gray text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 3 hours, 42 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/university/1/change/">Anna University</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                <ul style="list-style: none; padding: 0;">
+                                                    
+                                                    
+                                                        <li><strong>[]</strong></li>
+                                                    
+                                                </ul>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div>
+                                
+                                    <i class="fas fa-edit bg-gray text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 5 hours, 50 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/courseenrollement/6/change/">Yeswanth M enrolled in python status 33.33%</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                <ul style="list-style: none; padding: 0;">
+                                                    
+                                                    
+                                                        <li><strong>Changed</strong> Course complete videos.</li>
+                                                    
+                                                </ul>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div>
+                                
+                                    <i class="fas fa-edit bg-gray text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 5 hours, 50 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/courseenrollement/6/change/">Yeswanth M enrolled in python status 200.00%</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                <ul style="list-style: none; padding: 0;">
+                                                    
+                                                    
+                                                        <li><strong>Changed</strong> Course complete videos.</li>
+                                                    
+                                                </ul>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div>
+                                
+                                    <i class="fas fa-plus-circle bg-success text-xs"></i>
+                                
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> 5 hours, 50 minutes ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        
+                                            <a href="/admin/api/courseenrollement/6/change/">Yeswanth M enrolled in python status 2100.00%</a>
+                                        
+
+                                        
+                                    </h3>
+                                    
+                                        <div class="timeline-body">
+                                            
+                                                Added “Yeswanth M enrolled in python status 2100.00%”.
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        
+                        <div>
+                            <i class="fa fa-clock bg-gray"></i>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+        
+    </div>
+
+
+    
+        <footer class="main-footer ">
+            <div class="float-right d-none d-sm-inline">
+                <b>Jazzmin version</b> 3.0.1
+            </div>
+            
+                <strong>Copyright &copy; 2025  THIRD VIZION .</strong> All rights reserved.
+            
+        </footer>
+        
+    
+
+
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/vendor/adminlte/js/adminlte.min.js"></script>
+<!-- Django customisations -->
+<script src="/static/jazzmin/js/main.js"></script>
+
+
+<script src="/static/js/mycustom.js"></script>
+
+
+
+
+
+
+</body>
+</html>

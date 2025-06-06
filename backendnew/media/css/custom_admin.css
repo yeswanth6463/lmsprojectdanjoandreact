@@ -1,0 +1,33 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Force sidebar to always be shown */
+.sidebar {
+    transform: translateX(0) !important;
+}
+
+/* Hide the toggle button so users can't collapse it */
+.sidebar-toggle {
+    display: none !important;
+}
+
+/* Prevent body from collapsing sidebar */
+body.sidebar-collapsed .sidebar {
+    transform: translateX(0) !important;
+}
+
+body.sidebar-collapsed .main-sidebar {
+    margin-left: 0 !important;
+}
+.content{
+    margin-left: 0 !important;
+    color: red;
+
+}
+.card-header{
+    background: linear-gradient to right(darkblue, rgb(119, 188, 228));
+
+}
